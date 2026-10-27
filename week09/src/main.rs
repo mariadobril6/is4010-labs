@@ -32,130 +32,45 @@ fn main() {
     );
 }
 
-// ============================================================================
-// PART 1: Basic arithmetic
-// ============================================================================
-
-/// Returns the sum of `a` and `b`.
-///
-/// # Examples
-/// ```
-/// assert_eq!(add(2, 3), 5);
-/// assert_eq!(add(-1, 1), 0);
-/// ```
-fn add(_a: i32, _b: i32) -> i32 {
-    todo!("Implement add")
+fn add(a: i32, b: i32) -> i32 {
+    a + b
 }
 
-/// Returns the product of `a` and `b`.
-///
-/// # Examples
-/// ```
-/// assert_eq!(multiply(3, 4), 12);
-/// assert_eq!(multiply(0, 99), 0);
-/// ```
-fn multiply(_a: i32, _b: i32) -> i32 {
-    todo!("Implement multiply")
+fn multiply(a: i32, b: i32) -> i32 {
+    a * b
 }
 
-// ============================================================================
-// PART 2: Boolean logic
-// ============================================================================
-
-/// Returns `true` if `n` is even, `false` if it is odd.
-///
-/// # Examples
-/// ```
-/// assert!(is_even(4));
-/// assert!(!is_even(7));
-/// ```
-fn is_even(_n: i32) -> bool {
-    todo!("Implement is_even")
+fn is_even(n: i32) -> bool {
+    n % 2 == 0
 }
 
-// ============================================================================
-// PART 3: Comparisons
-// ============================================================================
-
-/// Returns the larger of `a` and `b`.
-/// If they are equal, return either value.
-///
-/// # Examples
-/// ```
-/// assert_eq!(max(3, 9), 9);
-/// assert_eq!(max(5, 5), 5);
-/// ```
-fn max(_a: i32, _b: i32) -> i32 {
-    todo!("Implement max")
+fn max(a: i32, b: i32) -> i32 {
+    if a > b {
+        a
+    } else {
+        b
+    }
 }
 
-// ============================================================================
-// PART 4: Expressions
-// ============================================================================
-
-/// Returns `n` raised to the power of 2 (n²).
-///
-/// # Examples
-/// ```
-/// assert_eq!(square(5), 25);
-/// assert_eq!(square(0), 0);
-/// ```
-fn square(_n: i32) -> i32 {
-    todo!("Implement square")
+fn square(n: i32) -> i32 {
+    n * n
 }
 
-// ============================================================================
-// PART 5: String operations
-// ============================================================================
-
-/// Returns the input string reversed.
-///
-/// # Examples
-/// ```
-/// assert_eq!(reverse_string("hello"), "olleh");
-/// assert_eq!(reverse_string(""), "");
-/// ```
-fn reverse_string(_s: &str) -> String {
-    todo!("Implement reverse_string")
+fn reverse_string(s: &str) -> String {
+    s.chars().rev().collect()
 }
 
-/// Joins words with the given separator.
-///
-/// # Examples
-/// ```
-/// assert_eq!(concat_with_separator(&["hello", "world"], "-"), "hello-world");
-/// assert_eq!(concat_with_separator(&[], ","), "");
-/// ```
-fn concat_with_separator(_words: &[&str], _sep: &str) -> String {
-    todo!("Implement concat_with_separator")
+fn concat_with_separator(words: &[&str], sep: &str) -> String {
+    words.join(sep)
 }
 
-// ============================================================================
-// PART 6: Collections and Option
-// ============================================================================
-
-/// Returns the maximum value in the slice, or None if empty.
-///
-/// # Examples
-/// ```
-/// assert_eq!(find_max_in_vec(&[1, 5, 3]), Some(5));
-/// assert_eq!(find_max_in_vec(&[]), None);
-/// ```
-fn find_max_in_vec(_numbers: &[i32]) -> Option<i32> {
-    todo!("Implement find_max_in_vec")
+fn find_max_in_vec(numbers: &[i32]) -> Option<i32> {
+    numbers.iter().copied().max()
 }
 
-/// Returns the count of even numbers in the slice.
-///
-/// # Examples
-/// ```
-/// assert_eq!(count_evens(&[1, 2, 3, 4]), 2);
-/// assert_eq!(count_evens(&[]), 0);
-/// ```
-fn count_evens(_numbers: &[i32]) -> usize {
-    todo!("Implement count_evens")
+fn count_evens(numbers: &[i32]) -> usize {
+    numbers.iter().filter(|&&n| n % 2 == 0).count()
 }
-
 // ============================================================================
 // TESTS: DO NOT MODIFY
 // ============================================================================
