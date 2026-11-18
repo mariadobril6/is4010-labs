@@ -21,10 +21,23 @@ use rand::Rng;
 /// let pwd = generate_random(12, false);
 /// assert_eq!(pwd.len(), 12);
 /// ```
-pub fn generate_random(_length: usize, _use_symbols: bool) -> String {
-    todo!("Implement generate_random, hint: build a charset string then pick random chars from it using rand::thread_rng()")
-}
+pub fn generate_random(length: usize, use_symbols: bool) -> String {
+    assert!(length > 0, "Password length must be greater than zero");
 
+    let mut charset =
+        String::from("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
+
+    if use_symbols {
+        charset.push_str("!@#$%^&*");
+    }
+
+    let chars: Vec<char> = charset.chars().collect();
+    let mut rng = rand::thread_rng();
+
+    (0..length)
+        .map(|_| chars[rng.gen_range(0..chars.len())])
+        .collect()
+}
 /// Generates a passphrase made of `word_count` random common English words joined by `separator`.
 ///
 /// Use the WORD_LIST constant defined below as your word source.
@@ -36,8 +49,14 @@ pub fn generate_random(_length: usize, _use_symbols: bool) -> String {
 /// // e.g. "apple-river-cloud"
 /// assert_eq!(phrase.split('-').count(), 3);
 /// ```
-pub fn generate_passphrase(_word_count: usize, _separator: char) -> String {
-    todo!("Implement generate_passphrase, hint: pick random indices into WORD_LIST, join with separator.to_string()")
+pub fn generate_passphrase(word_count: usize, separator: char) -> String {
+    let mut rng = rand::thread_rng();
+
+    let words: Vec<&str> = (0..word_count)
+        .map(|_| WORD_LIST[rng.gen_range(0..WORD_LIST.len())])
+        .collect();
+
+    words.join(&separator.to_string())
 }
 
 /// Generates a numeric PIN of the given `length` (digits 0–9 only).
@@ -50,8 +69,14 @@ pub fn generate_passphrase(_word_count: usize, _separator: char) -> String {
 /// assert_eq!(pin.len(), 6);
 /// assert!(pin.chars().all(|c| c.is_ascii_digit()));
 /// ```
-pub fn generate_pin(_length: usize) -> String {
-    todo!("Implement generate_pin, hint: sample from '0'..='9'")
+pub fn generate_pin(length: usize) -> String {
+    assert!(length > 0, "PIN length must be greater than zero");
+
+    let mut rng = rand::thread_rng();
+
+    (0..length)
+        .map(|_| rng.gen_range(0..=9).to_string())
+        .collect()
 }
 
 // A small word list for passphrases.
